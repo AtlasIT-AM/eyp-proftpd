@@ -20,14 +20,17 @@ class proftpd (
                 $umask_dirs          = '022',
                 $modulepath          = $proftpd::params::modulepath_default,
                 $blind_directories   = undef,
-                $defaultroot        = '~',
+                $defaultroot         = '~',
+                $min_passive_port    = '49152',
+                $max_passive_port    = '65534',
+                $masquerade_address  = undef,
               ) inherits proftpd::params {
 
   if($blind_directories != undef)
   {
     validate_array($blind_directories)
   }
-  #
+
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
